@@ -1,4 +1,8 @@
+from pathlib import Path
+
 from fastapi import FastAPI, Depends, HTTPException
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 from .database import upgrade_schema, get_db
@@ -20,6 +24,13 @@ from .simulation import run_assignment_scenarios, run_simulation
 upgrade_schema()
 app = FastAPI(title="CredResolve SmartDialer", version="0.1.0",
               description="Educational SmartDialer prototype with pacing and a safety gate.")
+frontend_dir = Path(__file__).resolve().parent.parent / "frontend"
+app.mount("/static", StaticFiles(directory=frontend_dir), name="static")
+
+
+@app.get("/", include_in_schema=False)
+def dashboard():
+    return FileResponse(frontend_dir / "index.html")
 
 @app.get("/health")
 def health():

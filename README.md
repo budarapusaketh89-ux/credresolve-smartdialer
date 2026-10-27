@@ -13,7 +13,15 @@ python -m pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Open http://127.0.0.1:8000/docs for the interactive API. The SQLite database is `smartdialer.db`; startup creates missing tables and adds the provider-event columns needed by this version.
+Open the SmartDialer dashboard at http://127.0.0.1:8000/ or the interactive API at http://127.0.0.1:8000/docs. The SQLite database is `smartdialer.db`; startup creates missing tables and adds the provider-event columns needed by this version.
+
+## Dashboard
+
+The responsive dashboard is served by the FastAPI application from `frontend/` and uses same-origin API requests. It displays available agents from `GET /agents` and active/answered call counts and recent records from `GET /calls`. The simulation panel posts its supported settings to `POST /simulate`; pacing, Safety Controller, provider, answer, and capacity-invariant results are taken directly from that response. Both dialing modes control the simulation only and do not initiate live dialing.
+
+There is no campaign-list endpoint or persistent event-history endpoint, so campaign creation is linked to its API documentation, and the dashboard displays decisions from the latest simulation rather than presenting them as a stored event feed. Safety rejections remain unavailable until a simulation has run. The API connection indicator checks `GET /health`.
+
+To run the dashboard locally, use the same commands above and open **http://127.0.0.1:8000/**. No separate frontend build or development server is required.
 
 ## Tests
 

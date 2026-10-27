@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101d32">
+  <title>SmartDialer Overview | CredResolve</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/dashboard.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#overview" aria-label="CredResolve SmartDialer home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M22.8 7.7a10.7 10.7 0 1 0 0 16.6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+            <path d="M11 16h12m0 0-4.2-4.2M23 16l-4.2 4.2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-copy"><strong>CredResolve</strong><small>SMARTDIALER</small></span>
+      </a>
+
+      <span class="nav-caption">WORKSPACE</span>
+      <nav class="nav-list">
+        <a class="nav-item is-active" href="#overview">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item" href="/docs#/default/create_campaign_campaigns_post" title="Open the campaign creation API">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M8 5V3.5m8 1.5V3.5M3.5 10h17M8 14h3m-3 3h7"/></svg>
+          <span>Campaigns</span><span class="nav-external" aria-label="opens API docs">↗</span>
+        </a>
+        <a class="nav-item" href="#live-calls">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h3l2 5-2.2 1.7a15 15 0 0 0 5 5l1.7-2.2 5 2v3a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 6.1 1.5 1.5 0 0 1 5 4.5Z"/></svg>
+          <span>Live Calls</span>
+        </a>
+        <a class="nav-item" href="#simulation">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3.5h6M10 3.5v6l-5.8 9.2A1.2 1.2 0 0 0 5.2 20.5h13.6a1.2 1.2 0 0 0 1-1.8L14 9.5v-6"/><path d="M8 15h8"/></svg>
+          <span>Simulations</span>
+        </a>
+        <a class="nav-item" href="#safety">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 20 7v5.2c0 4.2-3.1 7.1-8 8.8-4.9-1.7-8-4.6-8-8.8V7l8-3.5Z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>Safety &amp; Events</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="environment-note">
+          <span class="note-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3.5 20 7v5.2c0 4.2-3.1 7.1-8 8.8-4.9-1.7-8-4.6-8-8.8V7l8-3.5Z"/><path d="M12 8v4m0 3h.01"/></svg>
+          </span>
+          <span><strong>Prototype environment</strong><small>Simulated provider only</small></span>
+        </div>
+        <a class="docs-link" href="/docs" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 4H20v6.5M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg>
+          <span>API Docs</span><span class="external-mark">↗</span>
+        </a>
+      </div>
+    </aside>
+
+    <main class="workspace" id="overview">
+      <header class="topbar">
+        <div class="mobile-brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M22.8 7.7a10.7 10.7 0 1 0 0 16.6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><path d="M11 16h12m0 0-4.2-4.2M23 16l-4.2 4.2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <strong>CredResolve</strong>
+        </div>
+        <div class="page-heading">
+          <p class="eyebrow">OPERATIONS / OVERVIEW</p>
+          <h1>SmartDialer Overview</h1>
+          <p class="page-description">Intelligent outbound dialing with deterministic safety controls.</p>
+        </div>
+        <div class="header-actions">
+          <div class="connection" id="connection-status" data-state="checking" role="status" aria-live="polite">
+            <span class="connection-dot"></span><span id="connection-label">Checking API…</span>
+          </div>
+          <button class="button button-secondary refresh-button" id="refresh-button" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.5 9a7 7 0 0 1 11.6-2L20 12M4 12l2.9 5a7 7 0 0 0 11.6-2"/></svg>
+            <span>Refresh</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="metrics-grid" aria-label="Live system metrics">
+          <article class="metric-card">
+            <div class="metric-heading"><span>Available Agents</span><span class="metric-icon icon-teal"><svg viewBox="0 0 24 24"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19m6-9a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm6-3a3 3 0 0 1 0 6m2 3a3.5 3.5 0 0 1 2 3.5V19"/></svg></span></div>
+            <div class="metric-value" id="metric-agents" aria-live="polite">Loading…</div>
+            <div class="metric-note">Loading from GET /agents</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-heading"><span>Active Calls</span><span class="metric-icon icon-blue"><svg viewBox="0 0 24 24"><path d="M5 4.5h3l2 5-2.2 1.7a15 15 0 0 0 5 5l1.7-2.2 5 2v3a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 6.1 1.5 1.5 0 0 1 5 4.5Z"/></svg></span></div>
+            <div class="metric-value" id="metric-active" aria-live="polite">Loading…</div>
+            <div class="metric-note">Loading from GET /calls</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-heading"><span>Answered Calls</span><span class="metric-icon icon-green"><svg viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></svg></span></div>
+            <div class="metric-value" id="metric-answered" aria-live="polite">Loading…</div>
+            <div class="metric-note">Loading from GET /calls</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-heading"><span>Safety Rejections</span><span class="metric-icon icon-amber"><svg viewBox="0 0 24 24"><path d="M12 3.5 20 7v5.2c0 4.2-3.1 7.1-8 8.8-4.9-1.7-8-4.6-8-8.8V7l8-3.5Z"/><path d="M12 8v4m0 3h.01"/></svg></span></div>
+            <div class="metric-value" id="metric-rejections" aria-live="polite">—</div>
+            <div class="metric-note" id="rejections-note">Unavailable until a simulation runs</div>
+          </article>
+        </section>
+
+        <section class="simulation-panel panel" id="simulation">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">CONTROL CENTER</p>
+              <h2>Simulation controls</h2>
+              <p class="section-description">Explore pacing behavior with a deterministic, in-memory simulation.</p>
+            </div>
+            <span class="mode-context"><span class="mode-dot"></span>Simulation only · no live calls</span>
+          </div>
+          <form id="simulation-form" novalidate>
+            <div class="mode-picker" role="group" aria-label="Simulation dialing mode">
+              <label class="mode-option">
+                <input type="radio" name="mode" value="PROGRESSIVE">
+                <span class="mode-radio"></span>
+                <span><strong>Progressive</strong><small>One proposal per free agent</small></span>
+              </label>
+              <label class="mode-option">
+                <input type="radio" name="mode" value="PREDICTIVE" checked>
+                <span class="mode-radio"></span>
+                <span><strong>Predictive</strong><small>Estimate from answer rate and capacity</small></span>
+              </label>
+            </div>
+            <div class="form-grid">
+              <label class="field"><span>Agent count</span><input name="agent_count" type="number" min="1" max="500" value="20" required><small>1–500 simulated agents</small></label>
+              <label class="field"><span>Simulation duration <i>(seconds)</i></span><input name="duration_seconds" type="number" min="1" max="86400" value="120" required><small>1–86,400 seconds</small></label>
+              <label class="field"><span>Answer rate</span><input name="answer_rate" type="number" min="0" max="1" step="0.01" value="0.3" required><small>Fraction from 0 to 1</small></label>
+              <label class="field"><span>Average talk time <i>(seconds)</i></span><input name="avg_talk_seconds" type="number" min="1" max="3600" value="120" required><small>1–3,600 seconds</small></label>
+              <label class="field"><span>Maximum calls</span><input name="max_calls" type="number" min="1" max="10000" value="100" required><small>1–10,000 call attempts</small></label>
+              <label class="field"><span>Setup delay <i>(seconds)</i></span><input name="setup_seconds" type="number" min="1" max="300" value="2" required><small>1–300 seconds</small></label>
+              <label class="field"><span>Provider latency <i>(seconds)</i></span><input name="provider_latency_seconds" type="number" min="0" max="300" step="0.1" value="0" required><small>0–300 seconds</small></label>
+              <label class="field"><span>Provider failure rate</span><input name="provider_failure_rate" type="number" min="0" max="1" step="0.01" value="0" required><small>Fraction from 0 to 1</small></label>
+              <label class="field"><span>Agent drop fraction</span><input name="agent_drop_fraction" type="number" min="0" max="1" step="0.01" value="0" required><small>Optional capacity drop from 0 to 1</small></label>
+              <label class="field"><span>Agent drop at <i>(second)</i></span><input name="agent_drop_at_second" type="number" min="1" max="86400" placeholder="Not set"><small>Required when drop fraction is above zero</small></label>
+              <label class="field"><span>Random seed</span><input name="seed" type="number" min="0" max="2147483647" value="1" required><small>Same inputs and seed reproduce results</small></label>
+            </div>
+            <div class="form-footer">
+              <p class="form-message" id="simulation-message" role="status" aria-live="polite"></p>
+              <button class="button button-primary" id="run-simulation" type="submit">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
+                <span>Run Simulation</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="results-grid" id="safety">
+          <article class="panel safety-panel">
+            <div class="panel-heading compact-heading">
+              <div><p class="eyebrow">LATEST SIMULATION</p><h2>Pacing &amp; safety</h2></div>
+              <span class="result-badge" id="capacity-badge" data-state="unavailable">No result</span>
+            </div>
+            <p class="section-description" id="safety-empty">Run a simulation to see proposal and Safety Controller outcomes.</p>
+            <div class="safety-summary" id="safety-summary" hidden>
+              <div class="outcome-numbers">
+                <div><span>Proposed</span><strong id="result-proposed">—</strong></div>
+                <div><span>Reserved</span><strong id="result-reserved">—</strong></div>
+                <div class="rejection-number"><span>Safety rejected</span><strong id="result-rejected">—</strong></div>
+              </div>
+              <div class="stacked-bar" role="img" aria-label="Simulation proposal outcomes">
+                <span class="bar-approved" id="bar-approved"></span><span class="bar-rejected" id="bar-rejected"></span>
+              </div>
+              <div class="bar-legend"><span><i class="legend-approved"></i>Reserved</span><span><i class="legend-rejected"></i>Safety rejected</span></div>
+              <dl class="result-list">
+                <div><dt>Provider accepted</dt><dd id="result-provider-accepted">—</dd></div>
+                <div><dt>Provider failures</dt><dd id="result-provider-failures">—</dd></div>
+                <div><dt>Answered</dt><dd id="result-answered">—</dd></div>
+                <div><dt>Capacity invariant</dt><dd id="result-invariant">—</dd></div>
+              </dl>
+              <p class="simulation-disclaimer">Modeled simulation output — not a telecom forecast.</p>
+            </div>
+          </article>
+
+          <article class="panel live-calls-panel" id="live-calls">
+            <div class="panel-heading compact-heading">
+              <div><p class="eyebrow">CURRENT DATABASE STATE</p><h2>Live calls</h2></div>
+              <span class="table-count" id="calls-count">Loading…</span>
+            </div>
+            <p class="section-description">Latest call records from <code>GET /calls</code>. No event timestamps are exposed.</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Call</th><th>Campaign</th><th>Agent</th><th>Status</th><th>Provider</th></tr></thead>
+                <tbody id="calls-body"><tr><td class="table-empty" colspan="5">Loading call records…</td></tr></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel decisions-panel">
+          <div class="panel-heading compact-heading">
+            <div><p class="eyebrow">LATEST OPERATION</p><h2>Recent pacing decisions</h2></div>
+            <span class="table-count">Simulation only</span>
+          </div>
+          <p class="section-description" id="decisions-description">This table shows decisions from the latest simulation; no persistent event feed is available.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Second</th><th>Event</th><th>Proposed</th><th>Safety approved</th><th>Rejected</th><th>Available agents</th></tr></thead>
+              <tbody id="decisions-body"><tr><td class="table-empty" colspan="6">No simulation results yet.</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+        <footer class="page-footer"><span>CredResolve SmartDialer</span><span>Educational prototype · Mock provider</span></footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
