@@ -90,7 +90,7 @@ See [docs/architecture-diagram.md](docs/architecture-diagram.md) for the archite
 ## Validation Results
 
 ### Automated Tests
-- Test suite: **29 passed**
+- Test suite: **31 passed**
 - Python compilation: successful using `python -m compileall -q app tests`
 - Swagger API smoke test: endpoints verified successfully
 
